@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace numerik.config
 {
-    public class LicensesSoftwareConfig : IEntityTypeConfiguration<LicensesSoftware>
+    public class LicensesSoftwareConfig : IEntityTypeConfiguration<LicensesSoftwareDto>
     {
-        public void Configure(EntityTypeBuilder<LicensesSoftware> builder)
+        public void Configure(EntityTypeBuilder<LicensesSoftwareDto> builder)
         {
             throw new NotImplementedException();
         }

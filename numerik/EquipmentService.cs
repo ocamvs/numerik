@@ -16,9 +16,9 @@ namespace numerik
         DbSet<MovementHistory> MovementHistorys;
         DbSet<InstalledSoftware> InstalledSoftwares;
 
-        DbSet<EquipmentType> EquipmentTypes;
+        DbSet<EquipmentTypeDto> EquipmentTypes;
 
-        DbSet<LicensesSoftware> LicensesSoftwares;
+        DbSet<LicensesSoftwareDto> LicensesSoftwares;
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{

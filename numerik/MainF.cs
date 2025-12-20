@@ -1,3 +1,5 @@
+using numerik.mod;
+
 namespace numerik
 {
     public partial class MainF : Form
@@ -14,30 +16,32 @@ namespace numerik
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            Random random = new Random();
-            list.Add(new Button());
             
-            list[list.Count - 1].Size = new Size(30, 10);
-            if(list.Count > 1)
-            {
-                list[list.Count - 1].Location = new Point(x, list[list.Count - 2].Location.Y + list[list.Count - 2].Height + between);
-            }
-            else
-            {
-                list[list.Count - 1].Location = new Point(x, y);
-            }
+            //Random random = new Random();
+            //list.Add(new Button());
+            
+            //list[list.Count - 1].Size = new Size(30, 10);
+            //if(list.Count > 1)
+            //{
+            //    list[list.Count - 1].Location = new Point(x, list[list.Count - 2].Location.Y + list[list.Count - 2].Height + between);
+            //}
+            //else
+            //{
+            //    list[list.Count - 1].Location = new Point(x, y);
+            //}
             
 
-            int r = random.Next(255);
-            int g = random.Next(255);
-            int b = random.Next(255);
+            //int r = random.Next(255);
+            //int g = random.Next(255);
+            //int b = random.Next(255);
 
-            list[list.Count - 1].BackColor = Color.FromArgb(r, g, b);
-            list[list.Count - 1].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            list[list.Count - 1].Click += buttonIs_Click;
-            panel1.Controls.Add(list[list.Count - 1]); 
-            y += between;  
+            //list[list.Count - 1].BackColor = Color.FromArgb(r, g, b);
+            //list[list.Count - 1].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            //list[list.Count - 1].Click += buttonIs_Click;
+            //panel1.Controls.Add(list[list.Count - 1]); 
+            //y += between;  
         }
+    
         private void Panel1_MouseWheel(object sender, MouseEventArgs e)
         {
             int y = e.Delta;
@@ -75,5 +79,39 @@ namespace numerik
             MessageBox.Show(button.Parent.ToString());
         }
     }
-    
+    public class Crovel
+    {
+        Dto content;
+        Panel panel;
+        List<Button> buttons;
+
+        int carriageX = 0;
+        int carriageY;
+        public Crovel(int y)
+        {
+
+            carriageY = y;
+            SetBut(content.GetName());
+        }
+        void SetBut(string name)
+        {
+            var but = new Button();
+            but.Click += Disclosure;
+            but.Text = name;
+            buttons.Add(but);
+            carriageX += but.Size.Height;
+        }
+        void Disclosure(object sander, EventArgs eventArgs)
+        {
+
+        }
+        void Add()
+        {
+
+        }
+        void Delete()
+        {
+
+        }
+    }
 }

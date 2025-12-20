@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace numerik.config.TypeModConfig
 {
-    public class EquipmentTypeConfig : IEntityTypeConfiguration<EquipmentType>
+    public class EquipmentTypeConfig : IEntityTypeConfiguration<EquipmentTypeDto>
     {
-        public void Configure(EntityTypeBuilder<EquipmentType> builder)
+        public void Configure(EntityTypeBuilder<EquipmentTypeDto> builder)
         {
             builder.HasKey(e => e.Id);
 

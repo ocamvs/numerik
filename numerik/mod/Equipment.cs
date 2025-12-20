@@ -35,7 +35,7 @@ namespace numerik.mod
         public int ResponsibleEmployeeId { get; set; }
         public int TypeId { get; set; }
         public Employee ResponsibleEmployee {  get; set; }
-        public EquipmentType Type { get; set; }
+        public EquipmentTypeDto Type { get; set; }
         public EquipmentStatus Status { get; set; }
     }
     public class MovementHistory
