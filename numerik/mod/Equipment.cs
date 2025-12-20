@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace numerik.mod
 {
-    public class Divisions
+    public class Division
     {
         public int Id {  get; set; }
         public string Name { get; set; }
@@ -21,7 +21,7 @@ namespace numerik.mod
         public string JobTitle { get; set; }
 
         public int DivisionId { get; set; }
-        public Divisions Division { get; set; }
+        public Division Division { get; set; }
     }
     public class Equipment
     {
@@ -36,9 +36,11 @@ namespace numerik.mod
         public int TypeId { get; set; }
         public Employee ResponsibleEmployee {  get; set; }
         public EquipmentType Type { get; set; }
+        public EquipmentStatus Status { get; set; }
     }
     public class MovementHistory
     {
+        public int Id { get; set; }
         public DateTime MoveDate { get; set; }
 
         public int LastEmId { get; set; }
@@ -51,8 +53,15 @@ namespace numerik.mod
     }
     public class InstalledSoftware
     {
+        public int Id { get; set; }
         public DateTime InstallationDates { get; set; }
 
 
+    }
+    public enum EquipmentStatus
+    {
+        InProgress, 
+        Decommissioned, 
+        UnderRepair
     }
 }

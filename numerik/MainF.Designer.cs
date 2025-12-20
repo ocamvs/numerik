@@ -38,15 +38,15 @@
             // 
             // panel1
             // 
-            panel1.Location = new Point(93, 42);
+            panel1.Location = new Point(144, 42);
             panel1.Name = "panel1";
-            panel1.Size = new Size(695, 396);
+            panel1.Size = new Size(587, 396);
             panel1.TabIndex = 1;
             panel1.MouseWheel += Panel1_MouseWheel;
             // 
             // button1
             // 
-            button1.Location = new Point(332, 13);
+            button1.Location = new Point(506, 11);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -58,32 +58,32 @@
             // 
             button2.Location = new Point(12, 42);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(113, 23);
             button2.TabIndex = 2;
-            button2.Text = "button2";
+            button2.Text = "оборудывание";
             button2.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
             button3.Location = new Point(12, 71);
             button3.Name = "button3";
-            button3.Size = new Size(75, 23);
+            button3.Size = new Size(113, 39);
             button3.TabIndex = 3;
-            button3.Text = "button3";
+            button3.Text = "типы оборудывания";
             button3.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            button4.Location = new Point(12, 100);
+            button4.Location = new Point(12, 116);
             button4.Name = "button4";
-            button4.Size = new Size(75, 23);
+            button4.Size = new Size(113, 23);
             button4.TabIndex = 4;
-            button4.Text = "button4";
+            button4.Text = "лицензии";
             button4.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(93, 13);
+            textBox1.Location = new Point(144, 11);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(205, 23);
             textBox1.TabIndex = 5;

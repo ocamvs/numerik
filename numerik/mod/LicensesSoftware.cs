@@ -8,5 +8,10 @@ namespace numerik.mod
 {
     public class LicensesSoftware
     {
+        public int Id {  get; set; }
+        public string NamePo { get; set; }
+        public string Manufacturer { get; set; }
+        public string LicenseKey { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

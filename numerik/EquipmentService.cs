@@ -10,14 +10,24 @@ namespace numerik
 {
     public class EquipmentService: DbContext
     {
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+        DbSet<Division> Divisions;
+        DbSet<Employee> Employees;
+        DbSet<Equipment> Equipments;
+        DbSet<MovementHistory> MovementHistorys;
+        DbSet<InstalledSoftware> InstalledSoftwares;
 
-            modelBuilder.Entity<Divisions>(entity =>
-            {
-                entity.
-            });
-        }
+        DbSet<EquipmentType> EquipmentTypes;
+
+        DbSet<LicensesSoftware> LicensesSoftwares;
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+
+        //    modelBuilder.Entity<Division>(entity =>
+        //    {
+        //        entity.
+        //    });
+        //}
     }
 }
