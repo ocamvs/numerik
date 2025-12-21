@@ -10,8 +10,6 @@ namespace numerik.mod
     {
         protected List<Dto> item;
         protected List<Property> property;
-        public abstract string GetName();
-        public abstract List<Dto> GetElem();
         protected class Property
         {
             public List<string> property;
@@ -20,6 +18,8 @@ namespace numerik.mod
                 property = new List<string>() { name, item };
             }
         }
+        public abstract string GetName();
+        public abstract List<Dto> GetElem();
     }
     
     public class Void : Dto

@@ -17,9 +17,19 @@ namespace numerik
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            List<reS> rec = new List<reS>() { new reS("Ваня"), new reS("хуй"), new reS("аррстарс"), new reS("даня"), new reS("женя")};
+            foreach (var s in rec)
+            {
+                MessageBox.Show(s.Name);
+            }
+            re(rec[0]);
+            foreach (var s in rec)
+            {
+                MessageBox.Show(s.Name);
+            }
             //Random random = new Random();
             //list.Add(new Button());
-            
+
             //list[list.Count - 1].Size = new Size(30, 10);
             //if(list.Count > 1)
             //{
@@ -29,7 +39,7 @@ namespace numerik
             //{
             //    list[list.Count - 1].Location = new Point(x, y);
             //}
-            
+
 
             //int r = random.Next(255);
             //int g = random.Next(255);
@@ -40,6 +50,19 @@ namespace numerik
             //list[list.Count - 1].Click += buttonIs_Click;
             //panel1.Controls.Add(list[list.Count - 1]); 
             //y += between;  
+        }
+        void re(reS req)
+        {
+            req = null;
+            
+        }
+        public class reS
+        {
+            public reS(string name)
+            {
+                Name = name;
+            }
+            public string Name {  get; set; }
         }
         private void Panel1_MouseWheel(object sender, MouseEventArgs e)
         {
