@@ -9,8 +9,30 @@ namespace numerik.mod
     public abstract class Dto
     {
         protected List<Dto> item;
+        protected List<Property> property;
         public abstract string GetName();
         public abstract List<Dto> GetElem();
+        protected class Property
+        {
+            public List<string> property;
+            public Property(string name, string item)
+            {
+                property = new List<string>() { name, item };
+            }
+        }
+    }
+    
+    public class Void : Dto
+    {
+        public override List<Dto> GetElem()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string GetName()
+        {
+            throw new NotImplementedException();
+        }
     }
     public class DivisionDto: Dto
     {

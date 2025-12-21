@@ -1,4 +1,5 @@
 using numerik.mod;
+using System.Xml.Linq;
 
 namespace numerik
 {
@@ -16,7 +17,6 @@ namespace numerik
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            
             //Random random = new Random();
             //list.Add(new Button());
             
@@ -41,7 +41,6 @@ namespace numerik
             //panel1.Controls.Add(list[list.Count - 1]); 
             //y += between;  
         }
-    
         private void Panel1_MouseWheel(object sender, MouseEventArgs e)
         {
             int y = e.Delta;
@@ -79,39 +78,97 @@ namespace numerik
             MessageBox.Show(button.Parent.ToString());
         }
     }
+    public class Rendering
+    {
+        public Dto report {  get; set; }
+        public int carriageX { get; set; } = 0;
+        public int carriageY { get; set; } = 0;
+        private void Deployment(Dto dtp)
+        {
+            Crovel crovel = new Crovel(report, carriageX, carriageY);
+        }
+    }
     public class Crovel
     {
         Dto content;
         Panel panel;
         List<Button> buttons;
 
-        int carriageX = 0;
-        int carriageY;
-        public Crovel(int y)
-        {
+        bool resLeft = false;
+        bool resRight = false;
 
-            carriageY = y;
-            SetBut(content.GetName());
+        int carriageX = 0;
+        const int beetwin = 5;
+        public Crovel(Dto report, int carriageX, int carriageY)
+        {
+            content = report;
+            panel = new Panel();
+            panel.Location = new Point(carriageX,carriageY);
+            TitleBut(content.GetName());
         }
-        void SetBut(string name)
+
+        Button SetBut(string name)
         {
             var but = new Button();
-            but.Click += Disclosure;
             but.Text = name;
             buttons.Add(but);
-            carriageX += but.Size.Height;
+            carriageX += but.Size.Height + beetwin;
+            return but;
         }
-        void Disclosure(object sander, EventArgs eventArgs)
+        void TitleBut(string name)
         {
-
+            var b = SetBut(name);
+            b.MouseDown += new MouseEventHandler(TitleClick);
+            //b.MouseUp += new MouseEventHandler(TitleClick);
         }
-        void Add()
+        void AddBut()
         {
-
+            SetBut("+").Click += AddClick;
         }
-        void Delete()
+        void DelBut()
         {
+            SetBut("-").Click += DeleteClick;
+        }
 
+        private void TitleClick(object? sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                Disclosure();
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                GetProperty();
+            }
+        }
+        private void AddClick(object? sender, EventArgs e)
+        {
+            Change change = new Change();
+            if(change.ShowDialog() == DialogResult.OK)
+            {
+                //запись в бд
+                //добавление в список нового dto
+            }
+        }
+        private void DeleteClick(object? sender, EventArgs e)
+        {
+            if (MessageBox.Show("¬ы точно хотите удалить ", "ѕодтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                //удаление с бд
+                //удаление этого dto хз как
+                
+            }
+        }
+
+        private void Disclosure()
+        {
+            //запрос в бд списка 
+            //присваивание в Dto.item полученого списка
+        }
+        private void GetProperty()
+        {
+            //формирование модальной панели
+            //запись в нее свойства
         }
     }
 }
