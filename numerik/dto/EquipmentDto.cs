@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace numerik.mod
 {
     public abstract class Dto
     {
-        protected List<Dto> item;
+        public List<Dto> item;
         protected List<Property> property;
         protected class Property
         {
@@ -21,10 +22,14 @@ namespace numerik.mod
         }
         public abstract string GetName();
         public abstract List<Dto> GetElem();
+        public abstract Dto AddElem();
+        public abstract void DeleteElem();
+        public abstract void RenameElem();
     }
     
     public class Void : Dto
     {
+        
         public override List<Dto> GetElem()
         {
             throw new NotImplementedException();

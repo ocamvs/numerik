@@ -1,32 +1,25 @@
 using numerik.mod;
+using System.Diagnostics;
 using System.Xml.Linq;
 
 namespace numerik
 {
     public partial class MainF : Form
     {
-        int x  = 0;
-        int y = 0;
-        const int between = 15;
-        const int hPanel = 10;
-        List<Button> list = new List<Button>();
-        int resC = 0;
+        Rendering pan;
         public MainF()
         {
             InitializeComponent();
         }
+        void ReportingPoint()
+        {
+            ModalPanel panel = new ModalPanel();
+            panel.Location = new Point(0, 0);
+            this.Controls.Add(panel);
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            List<reS> rec = new List<reS>() { new reS("Ваня"), new reS("хуй"), new reS("аррстарс"), new reS("даня"), new reS("женя")};
-            foreach (var s in rec)
-            {
-                MessageBox.Show(s.Name);
-            }
-            re(rec[0]);
-            foreach (var s in rec)
-            {
-                MessageBox.Show(s.Name);
-            }
+            
             //Random random = new Random();
             //list.Add(new Button());
 
@@ -51,19 +44,7 @@ namespace numerik
             //panel1.Controls.Add(list[list.Count - 1]); 
             //y += between;  
         }
-        void re(reS req)
-        {
-            req = null;
-            
-        }
-        public class reS
-        {
-            public reS(string name)
-            {
-                Name = name;
-            }
-            public string Name {  get; set; }
-        }
+       
         private void Panel1_MouseWheel(object sender, MouseEventArgs e)
         {
             int y = e.Delta;
@@ -103,12 +84,22 @@ namespace numerik
     }
     public class Rendering
     {
-        public Dto report {  get; set; }
-        public int carriageX { get; set; } = 0;
-        public int carriageY { get; set; } = 0;
-        private void Deployment(Dto dtp)
+        public Rendering(Dto dto)
+        {
+            report = dto;
+            Deployment(report, carriageX);
+        }
+        private Dto report;
+        public int carriageX { get; private set; } = 0;
+        public int carriageY { get; private set; } = 0;
+        private const int indentation = 20;
+        private void Deployment(Dto dtp, int x)
         {
             Crovel crovel = new Crovel(report, carriageX, carriageY);
+            foreach (var item in report.item)
+            {
+                Deployment(dtp, x + indentation);
+            }
         }
     }
     public class Crovel
@@ -141,6 +132,7 @@ namespace numerik
         void TitleBut(string name)
         {
             var b = SetBut(name);
+            
             b.MouseDown += new MouseEventHandler(TitleClick);
             //b.MouseUp += new MouseEventHandler(TitleClick);
         }
@@ -155,6 +147,7 @@ namespace numerik
 
         private void TitleClick(object? sender, MouseEventArgs e)
         {
+            Enter.targetReport = this;
             if(e.Button == MouseButtons.Left)
             {
                 Disclosure();
@@ -190,8 +183,37 @@ namespace numerik
         }
         private void GetProperty()
         {
+            
             //формирование модальной панели
             //запись в нее свойства
+        }
+    }
+    public class ModalPanel
+    {
+        Panel parent;
+        public Panel panel { get; private set; }
+        int carY = 0;
+        const int beetwin = 10;
+        public ModalPanel(Panel parent, List<Control> controls)
+        {
+            this.parent = parent;
+            panel = new Panel();
+            foreach (Control control in controls)
+            {
+                Trace(control);
+                carY += control.Height + beetwin;
+            }
+        }
+        void Trace(Control q)
+        {
+            panel.Controls.Add(q);
+            q.Location = new Point(0, carY);
+        }
+        public void drow(int x, int y)
+        {
+            panel.Location = new Point(x, y);
+            parent.Controls.Add(panel);
+            parent.Controls.SetChildIndex(panel, 0);
         }
     }
 }
