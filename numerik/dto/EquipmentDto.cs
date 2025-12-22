@@ -1,4 +1,5 @@
-﻿using System;
+﻿using numerik.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,7 @@ namespace numerik.mod
     }
     public class DivisionDto: Dto
     {
+        private DivisionRepository repository;
         public string Name { get; set; }
         public string Supervisor { get; set; }
         public List<EmployeeDto> Employees { get; set; }//
@@ -52,6 +54,7 @@ namespace numerik.mod
     }
     public class EmployeeDto: Dto
     {
+        private EmployyRepository repository;
         public string FIO { get; set; }
         public string JobTitle { get; set; }
         public DivisionDto Division { get; set; }
@@ -68,15 +71,16 @@ namespace numerik.mod
     }
     public class EquipmentDto: Dto
     {
+        private EquipmentRepository repository;
         public int InventoryNumber { get; set; }
         public int SerialNumber { get; set; }
         public string Name { get; set; }
         public string Supervisor { get; set; }
         public DateTime InstallationDate { get; set; }
+        public EquipmentStatus Status { get; set; }
 
         public EmployeeDto ResponsibleEmployee {  get; set; }
         public EquipmentTypeDto Type { get; set; }
-        public EquipmentStatus Status { get; set; }
         public MovementHistoryDto story { get; set; }
 
         public override List<Dto> GetElem()
@@ -91,6 +95,7 @@ namespace numerik.mod
     }
     public class MovementHistoryDto: Dto
     {
+        private MovementHistoryRepository repository;
         int insex;
         public MovementHistoryDto(int index)
         {
