@@ -13,7 +13,8 @@ namespace numerik.config
     {
         public void Configure(EntityTypeBuilder<LicensesSoftwareDto> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("Лицензии по");
+            builder.HasKey(x => x.Id);
         }
     }
 }

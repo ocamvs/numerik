@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace numerik
 {
-    public class EquipmentService: DbContext
+    public class Context : DbContext
     {
         DbSet<Division> Divisions;
         DbSet<Employee> Employees;
@@ -16,18 +16,25 @@ namespace numerik
         DbSet<MovementHistory> MovementHistorys;
         DbSet<InstalledSoftware> InstalledSoftwares;
 
-        DbSet<EquipmentTypeDto> EquipmentTypes;
+        DbSet<EquipmentType> EquipmentTypes;
 
-        DbSet<LicensesSoftwareDto> LicensesSoftwares;
+        DbSet<LicensesSoftware> LicensesSoftwares;
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                string connectionString = "server=localhost;port=3306;database=LibraryDB;user=root;password=;CharSet=utf8mb4;";
+                optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+            }
+        }
 
-        //    modelBuilder.Entity<Division>(entity =>
-        //    {
-        //        entity.
-        //    });
-        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity
+        }
+            
     }
 }

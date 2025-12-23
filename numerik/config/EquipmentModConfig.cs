@@ -13,6 +13,7 @@ namespace numerik.config.EquipmentModConfig
     {
         public void Configure(EntityTypeBuilder<Division> builder)
         {
+            builder.ToTable("Подразделения");
             builder.HasKey(x => x.Id);
 
 
@@ -23,6 +24,7 @@ namespace numerik.config.EquipmentModConfig
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
+            builder.ToTable("Работники");
             builder.HasKey(x => x.Id);
 
 
@@ -33,6 +35,7 @@ namespace numerik.config.EquipmentModConfig
     {
         public void Configure(EntityTypeBuilder<Equipment> builder)
         {
+            builder.ToTable("Оборудывание");
             builder.HasKey(x => x.Id);
 
 
@@ -43,6 +46,7 @@ namespace numerik.config.EquipmentModConfig
     {
         public void Configure(EntityTypeBuilder<MovementHistory> builder)
         {
+            builder.ToTable("История перемещения");
             builder.HasKey(x => x.Id);
 
 
@@ -52,6 +56,7 @@ namespace numerik.config.EquipmentModConfig
     {
         public void Configure(EntityTypeBuilder<InstalledSoftware> builder)
         {
+            builder.ToTable("Установленное по");
             builder.HasKey(x => x.Id);
 
 

@@ -11,8 +11,6 @@ namespace numerik.mod
         public int Id {  get; set; }
         public string Name { get; set; }
         public string Supervisor { get; set; }
-
-        public List<Employee> Employees { get; set; }//
     }
     public class Employee
     {
@@ -21,35 +19,35 @@ namespace numerik.mod
         public string JobTitle { get; set; }
 
         public int DivisionId { get; set; }
-        public Division Division { get; set; }
+        //public Division Division { get; set; }
     }
     public class Equipment
     {
         public int InventoryNumber { get; set; }
-        public int SerialNumber { get; set; }
-        public int Id { get; set; }
         public string Name { get; set; }
-        public string Supervisor { get; set; }
-        public DateTime InstallationDate { get; set; }
-
-        public int ResponsibleEmployeeId { get; set; }
         public int TypeId { get; set; }
-        public Employee ResponsibleEmployee {  get; set; }
-        public EquipmentTypeDto Type { get; set; }
+        public int SerialNumber { get; set; }
+        public int ResponsibleEmployeeId { get; set; }
+        public DateTime InstallationDate { get; set; }
         public EquipmentStatus Status { get; set; }
+
+        //public int Id { get; set; }
+        //public string Supervisor { get; set; }
+        //public Employee ResponsibleEmployee {  get; set; }
+        //public EquipmentTypeDto Type { get; set; }
+        
     }
     public class MovementHistory
     {
-        public int Id { get; set; }
+        public int EquipmenId { get; set; }
         public DateTime MoveDate { get; set; }
-
         public int LastEmId { get; set; }
         public int FirstEmId { get; set; }
-        public int EquipmenId { get; set; }
-
-        public Employee LastEm {  get; set; }
-        public Employee FirstEm { get; set; }
-        public Equipment Equipmen { get; set; }
+        //public int Id { get; set; }
+        //public Equipment Equipmen { get; set; }
+        //public Employee LastEm {  get; set; }
+        //public Employee FirstEm { get; set; }
+        
     }
     public class InstalledSoftware
     {
@@ -60,8 +58,8 @@ namespace numerik.mod
     }
     public enum EquipmentStatus
     {
-        InProgress, 
-        Decommissioned, 
-        UnderRepair
+        InProgress = 0, 
+        Decommissioned = 1, 
+        UnderRepair = 2
     }
 }

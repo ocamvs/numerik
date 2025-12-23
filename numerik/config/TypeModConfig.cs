@@ -13,6 +13,8 @@ namespace numerik.config.TypeModConfig
     {
         public void Configure(EntityTypeBuilder<EquipmentTypeDto> builder)
         {
+            builder.ToTable("Типы оборудывания");
+           
             builder.HasKey(e => e.Id);
 
 

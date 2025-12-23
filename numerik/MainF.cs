@@ -1,4 +1,5 @@
 using numerik.mod;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml.Linq;
 
@@ -6,7 +7,8 @@ namespace numerik
 {
     public partial class MainF : Form
     {
-        Rendering pan;
+        //Rendering pan;
+        List<Line> lines = new List<Line>();
         public MainF()
         {
             InitializeComponent();
@@ -45,37 +47,7 @@ namespace numerik
             //y += between;  
         }
        
-        private void Panel1_MouseWheel(object sender, MouseEventArgs e)
-        {
-            int y = e.Delta;
-            if (e.Delta > 0)
-            {
-                if (list[0].Location.Y == 0) {
-                    return;
-                }
-                else if(list[0].Location.Y + e.Delta > 0)
-                {
-                    y = list[0].Location.Y * -1;
-                }
-            }
-            else
-            {
-                //if (list[list.Count - 1].Location.Y  + list[list.Count - 1].Size.Height <= panel1.Size.Height)
-                if ((list.Count * hPanel) + (between * (list.Count - 1))<= panel1.Size.Height || list[list.Count - 1].Location.Y + list[list.Count - 1].Height == panel1.Height)
-                {
-                    return;
-                }
-                else if (list[list.Count - 1].Location.Y + list[list.Count - 1].Size.Height + e.Delta < panel1.Size.Height)
-                {
-                    y = (list[list.Count - 1].Location.Y - (list[list.Count - 1].Location.Y - (list[list.Count - 1].Location.Y - panel1.Height) - list[list.Count - 1].Height)) * -1;
-                }
-            }
-
-            for (int i = 0; i < list.Count; i++)
-            {
-                list[i].Location = new Point(list[i].Location.X, list[i].Location.Y + y);
-            }
-        }
+        
         private void buttonIs_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -188,32 +160,94 @@ namespace numerik
             //запись в нее свойства
         }
     }
-    public class ModalPanel
+    
+    public abstract class LinePanel
     {
-        Panel parent;
-        public Panel panel { get; private set; }
-        int carY = 0;
-        const int beetwin = 10;
-        public ModalPanel(Panel parent, List<Control> controls)
+        protected Panel target = new Panel();
+        protected int targetHeight = 0;
+        protected int targetWidht = 0;
+        protected List<Control> item = new List<Control>();
+
+        protected int carriageY = 0;
+        protected const int beetwin = 10;
+        public LinePanel(int wadth, int heigth)
         {
-            this.parent = parent;
-            panel = new Panel();
+            targetHeight = heigth;
+            targetWidht = wadth;
+        }
+        public LinePanel(List<Control> controls)
+        {
             foreach (Control control in controls)
             {
-                Trace(control);
-                carY += control.Height + beetwin;
+                if (control.Size.Width > targetWidht)
+                {
+                    targetWidht = control.Size.Width;
+                }
+                targetHeight += control.Size.Height + beetwin;
+                Add(control);
+            }
+            targetHeight-=beetwin;
+            
+        }
+
+        public virtual void Paint(Control control, int x, int y)
+        {
+            target.Size = new Size(targetWidht, targetHeight);
+            target.Location = new Point(x, y);
+            control.Controls.Add(target);
+            target.MouseWheel += MouseWheel;
+        }
+        public virtual void Add(Control control)
+        {
+            control.Location = new Point(0, carriageY);
+            carriageY += control.Height + beetwin;
+            item.Add(control);
+            target.Controls.Add(control);
+        }
+        private void MouseWheel(object sender, MouseEventArgs e)
+        {
+            var list = item;
+            int y = e.Delta;
+            if (e.Delta > 0)
+            {
+                if (list[0].Location.Y == 0)
+                {
+                    return;
+                }
+                else if (list[0].Location.Y + e.Delta > 0)
+                {
+                    y = list[0].Location.Y * -1;
+                }
+            }
+            else
+            {
+                //if (list[list.Count - 1].Location.Y  + list[list.Count - 1].Size.Height <= panel1.Size.Height)
+                if ((list.Count * hPanel) + (between * (list.Count - 1)) <= panel1.Size.Height || list[list.Count - 1].Location.Y + list[list.Count - 1].Height == panel1.Height)
+                {
+                    return;
+                }
+                else if (list[list.Count - 1].Location.Y + list[list.Count - 1].Size.Height + e.Delta < panel1.Size.Height)
+                {
+                    y = (list[list.Count - 1].Location.Y - (list[list.Count - 1].Location.Y - (list[list.Count - 1].Location.Y - panel1.Height) - list[list.Count - 1].Height)) * -1;
+                }
+            }
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                list[i].Location = new Point(list[i].Location.X, list[i].Location.Y + y);
             }
         }
-        void Trace(Control q)
+    }
+
+    public class ModalPanel : LinePanel
+    {
+        public ModalPanel(int wadth, int heigth) : base(wadth, heigth){}
+        public override void Paint(Control control, int x, int y)
         {
-            panel.Controls.Add(q);
-            q.Location = new Point(0, carY);
-        }
-        public void drow(int x, int y)
-        {
-            panel.Location = new Point(x, y);
-            parent.Controls.Add(panel);
-            parent.Controls.SetChildIndex(panel, 0);
+            target.Size = new Size(targetWidht, targetHeight);
+            target.Location = new Point(x, y);
+            control.Controls.Add(target);
+            control.Controls.SetChildIndex(target, 0);
         }
     }
 }
