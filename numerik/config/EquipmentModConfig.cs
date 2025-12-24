@@ -15,8 +15,9 @@ namespace numerik.config.EquipmentModConfig
         {
             builder.ToTable("Подразделения");
             builder.HasKey(x => x.Id);
-
-
+            builder.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
+            builder.Property(e => e.Name).HasColumnName("division_name").HasMaxLength(30).IsRequired();
+            builder.Property(e => e.Supervisor).HasColumnName("supervisor_fio").HasMaxLength(30).IsRequired();
         }
     }
 
@@ -27,7 +28,10 @@ namespace numerik.config.EquipmentModConfig
             builder.ToTable("Работники");
             builder.HasKey(x => x.Id);
 
-
+            builder.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
+            builder.Property(e => e.FIO).HasColumnName("fio").HasMaxLength(30).IsRequired();
+            builder.Property(e => e.JobTitle).HasColumnName("job").HasMaxLength(30).IsRequired();
+            builder.Property(e => e.DivisionId).HasColumnName("fio").HasMaxLength(30).IsRequired();
         }
     }
 

@@ -10,15 +10,15 @@ namespace numerik
 {
     public class Context : DbContext
     {
-        DbSet<Division> Divisions;
-        DbSet<Employee> Employees;
-        DbSet<Equipment> Equipments;
-        DbSet<MovementHistory> MovementHistorys;
-        DbSet<InstalledSoftware> InstalledSoftwares;
+        public DbSet<Division> Divisions { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<MovementHistory> MovementHistorys { get; set; }
+        public DbSet<InstalledSoftware> InstalledSoftwares { get; set; }
 
-        DbSet<EquipmentType> EquipmentTypes;
+        public DbSet<EquipmentType> EquipmentTypes { get; set; }
 
-        DbSet<LicensesSoftware> LicensesSoftwares;
+        public DbSet<LicensesSoftware> LicensesSoftwares { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,7 +33,7 @@ namespace numerik
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity
+            modelBuilder.Entity<Division>(e=>e.)
         }
             
     }

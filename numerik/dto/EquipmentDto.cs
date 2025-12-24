@@ -1,4 +1,5 @@
-﻿using numerik.Repository;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using numerik.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,10 @@ namespace numerik.mod
             public Property(string name, string item)
             {
                 property = new List<string>() { name, item };
+                
             }
         }
+
         public abstract string GetName();
         public abstract List<Dto> GetElem();
         public abstract Dto AddElem();
