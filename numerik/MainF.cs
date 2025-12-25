@@ -21,30 +21,7 @@ namespace numerik
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            //Random random = new Random();
-            //list.Add(new Button());
-
-            //list[list.Count - 1].Size = new Size(30, 10);
-            //if(list.Count > 1)
-            //{
-            //    list[list.Count - 1].Location = new Point(x, list[list.Count - 2].Location.Y + list[list.Count - 2].Height + between);
-            //}
-            //else
-            //{
-            //    list[list.Count - 1].Location = new Point(x, y);
-            //}
-
-
-            //int r = random.Next(255);
-            //int g = random.Next(255);
-            //int b = random.Next(255);
-
-            //list[list.Count - 1].BackColor = Color.FromArgb(r, g, b);
-            //list[list.Count - 1].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            //list[list.Count - 1].Click += buttonIs_Click;
-            //panel1.Controls.Add(list[list.Count - 1]); 
-            //y += between;  
+ 
         }
        
         
@@ -192,6 +169,7 @@ namespace numerik
 
         public virtual void Paint(Control control, int x, int y)
         {
+            //(Form)control.Controls.Add(new Button());
             target.Size = new Size(targetWidht, targetHeight);
             target.Location = new Point(x, y);
             control.Controls.Add(target);
